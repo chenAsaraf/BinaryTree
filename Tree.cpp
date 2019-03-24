@@ -29,7 +29,7 @@ Node Node*::getLeft() const{
 Node string::toString() const{
     string node = "[ " + this->data + " ]"; //like that?
     return node;
-}
+};
 
 ////////////////////////////////////
 
