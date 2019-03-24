@@ -27,8 +27,8 @@ class Node {
 
 class Tree {
     private:
-        Node* root;
-        int size;
+        Node* rootOf;
+        int sizeOf;
         /*Private Methods*/
         void destroyTree();
         Node insert(int i);
