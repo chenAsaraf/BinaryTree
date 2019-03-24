@@ -15,12 +15,12 @@ class Node {
         Node(int data) : Node(data, nullptr, nullptr) {}
         Node(int data, Node* right, Node* left) : data(data), right(right), left(left) {}
          
-        void setData(int data);
-        void setRight(Node* newRight);
-        void setLeft(Node* newLeft);
-        int getData() const;
-        Node* getRight() const;
-        Node* getLeft() const;
+        int& data(); //setter
+        const int data() const; //getter
+        Node*& right();  //setter ->> how to write Node*&?
+        const Node* right const; //getter
+        Node*& left(); //setter
+        const Node* left() const; //getter
         string toString() const;
 };
 
