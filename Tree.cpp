@@ -2,13 +2,6 @@
 
 
 //implementation of Node class: 
-class Node{
-    private: 
-        int data;
-        Node* right; //pointer?
-        Node* left; //pointer?
-        Node* parent;
-public:
 
 Node void::setData(int data){
     this->data = data;
@@ -38,12 +31,12 @@ Node string::toString() const{
     string node = "[ " + this->data + " ]"; //like that?
     return node;
 }
-};
+
 
 ////////////////////////////////////
 
 //Implemantation of Binary Tree:
-class Tree{
+
 //Pribvate methods
 //the distructor:
 Tree void::destroyTree(){
@@ -167,4 +160,3 @@ void Tree::print(){
     
 }
 
-};
