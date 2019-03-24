@@ -34,6 +34,32 @@ Node string::toString() const{
 ////////////////////////////////////
 
 //Implemantation of Binary Tree:
+
+//Pribvate methods
 Tree void::destroyTree(Node* node){
+    
+}
+
+Tree Node::insert(Node* node, int key){
+    // if the Binary Search Tree doesn't exist yet, create new tree with this as a root
+    if(node==NULL){
+        node = new Node;
+        node->data= key;
+        node->left= NULL;
+        node->right= NULL;
+        node->parnt= NULL;
+    }
+    
+    //if the given key is bigger then current node data- go to right sub-tree
+    else if(key > node->data){
+        node->right = insert(node->right, key);
+    }
+    else{
+        node->left = insert(node->left, key);
+    }
+    
+}
+
+Tree void::destroyTre(){
     
 }
