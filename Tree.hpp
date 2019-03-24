@@ -1,8 +1,8 @@
 #pragma once
 
 #include <iostream>
-
-
+namespce ariel
+{
 class Node {
     private: 
         int data;
@@ -60,3 +60,4 @@ class Tree {
         
 };
 
+}
