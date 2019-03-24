@@ -9,7 +9,12 @@ class Node{
         Node* left; //pointer?
         Node* parent;
 public:
-
+Node::Node(){
+	parent=NULL;
+	left=NULL;
+	right=NULL;
+	data=NULL;
+}
 Node void::setData(int data){
     this->data = data;
 }
@@ -44,6 +49,11 @@ Node string::toString() const{
 
 //Implemantation of Binary Tree:
 class Tree{
+	
+ariel::Tree::Tree(){
+	sizeOf=0;
+	rootOf=NULL;
+}
 //Pribvate methods
 //the distructor:
 Tree void::destroyTree(){
