@@ -39,9 +39,7 @@ class Tree {
         ~Tree();
     
         /*Public Methods*/
-        void destroyTree();
-        //insert the number i to the correct node in the binary tree
-        void insert(int i); //throw exception when already axist
+
         //remove the number i from the tree
         void remove(int i); //throw exception when not exist
         //returns the size of the tree
