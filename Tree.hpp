@@ -1,7 +1,7 @@
 #pragma once
 
 #include <iostream>
-namespce ariel
+namespace ariel
 {
 class Node {
     private: 
