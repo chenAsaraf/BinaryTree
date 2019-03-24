@@ -42,12 +42,12 @@ Tree void::destroyTree(Node* node){
 
 Tree Node::insert(Node* node, int key){
     // if the Binary Search Tree doesn't exist yet, create new tree with this as a root
-    if(node==NULL){
+    if(node==nullptr){
         node = new Node;
         node->data= key;
-        node->left= NULL;
-        node->right= NULL;
-        node->parnt= NULL;
+        node->left= nullptr;
+        node->right= nullptr;
+        node->parnt= nullptr;
     }
     
     //if the given key is bigger then current node data- go to right sub-tree
