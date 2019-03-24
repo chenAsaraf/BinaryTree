@@ -50,7 +50,7 @@ Tree void::destroyTree(){
     destroyTreeHelp(root->left);
 	destroyTreeHelp(root->right);
 	delete root;
-	size=0;
+	sizeOf=0;
 }
 
 //the following function is supposed to delete the leafs that come after the leaf we recieve, including the one we recieve itself
@@ -88,15 +88,15 @@ void Tree::insert(int i, Node *leaf){
 }
 //the insert function:
 void Tree::insert(int i){
-	if(root != NULL){
-		insert(i, root);
+	if(rootOf != NULL){
+		insert(i, rootOf);
 	}else{
-		root = new Node;
-		root->data = i;
-		root->left = NULL;
-		root->right = NULL;
+		rootOf = new Node;
+		rootOf->data = i;
+		rootOf->left = NULL;
+		rootOf->right = NULL;
 	}
-	size=size+1;
+	sizeOf=sizeOf+1;
 }
 //we need to complete that function:
 void Tree::remove(int i){
@@ -104,11 +104,11 @@ void Tree::remove(int i){
 }
 //return the size of the tree:
 int Tree::size(){
-    return size;
+    return sizeOf;
 }
 //if the tree contains the value of i- returns true, else-false
 bool Tree::contains(int i){
-    return search(i, root)
+    return search(i, rootOf)
 }
 //the following function looks for the i in the tree
 bool Tree::search(int i, node *leaf){
@@ -128,20 +128,20 @@ bool Tree::search(int i, node *leaf){
 
 //returns the data in the root
 int Tree::root(){
-    return root->data;
+    return rootOf->data;
 }
 
 //returns the parent's data of the input
 //we need to complete it
 int Tree::parent(int i){
-    node *prev=root;
-    node *current=root;
+    node *prev=rootOf;
+    node *current=rootOf;
     
 }
 
 //returns the left child's data of the input
 int Tree::left(int i){
-    return ((search(i, root))-> left->data);
+    return ((search(i, rootOf))-> left->data);
 }
 //the following function is supposed to help the left and the right functions
 node *btree::search(int i, node *leaf){
@@ -160,7 +160,7 @@ node *btree::search(int i, node *leaf){
 }
 //returns the right child's data of the input
 int Tree::right(int i){
-    return ((search(i, root))-> right->data);
+    return ((search(i, rootOf))-> right->data);
 }
 //prints the tree- we need to write it
 void Tree::print(){
