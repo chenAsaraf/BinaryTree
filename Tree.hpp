@@ -1,19 +1,20 @@
 #pragma once
 
 #include <iostream>
-namespace ariel
-{
+
+
 class Node {
     private: 
         int data;
         Node* right; //pointer?
         Node* left; //pointer?
-        
+        Node* parent;        
         
     public:
        // Node() : Node(NULL, nullptr) {} not nessecary?
-        Node(int data) : Node(data, nullptr, nullptr) {}
-        Node(int data, Node* right, Node* left) : data(data), right(right), left(left) {}
+        Node(int data) : Node(data, nullptr, nullptr, nullptr) {}
+        Node(int data, Node* right, Node* left, Node* parent) :
+        data(data), right(right), left(left), parent(parent) {}
          
         int& data(); //setter
         const int data() const; //getter
@@ -30,6 +31,7 @@ class Tree {
         
         /*Private Methods*/
         void destroyTree(Node* node);
+        Node insert(Node* node, int key);
         
     public:
         //constructor & deconstructor
@@ -39,7 +41,7 @@ class Tree {
         /*Public Methods*/
         void destroyTree();
         //insert the number i to the correct node in the binary tree
-        void insert(int i); //throw exception when already axist
+        Node insert(int i); //throw exception when already axist
         //remove the number i from the tree
         void remove(int i); //throw exception when not exist
         //returns the size of the tree
@@ -60,4 +62,3 @@ class Tree {
         
 };
 
-}
