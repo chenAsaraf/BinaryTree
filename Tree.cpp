@@ -1,62 +1,18 @@
 #include "Tree.hpp"
 
 
-//implementation of Node class: 
-class Node{
-    private: 
-        int data;
-        Node* right; //pointer?
-        Node* left; //pointer?
-        Node* parent;
-public:
-Node::Node(){
-	parent=NULL;
-	left=NULL;
-	right=NULL;
-	data=NULL;
-}
-Node void::setData(int data){
-    this->data = data;
-}
-
-Node void::setRight(Node* newRight){
-    this->right = right;
-}
-
-Node void::setLeft(Node* newLeft){
-    this->left = left;
-}
-
-Node int::getData() const{
-    return this->data;
-}
-
-Node Node*::getRight() const{
-    return this->right;
-}
-
-Node Node*::getLeft() const{
-    return this->left;
-}
-
-Node string::toString() const{
-    string node = "[ " + this->data + " ]"; //like that?
-    return node;
-}
-};
-
-////////////////////////////////////
-
 //Implemantation of Binary Tree:
-class Tree{
+
 	
 ariel::Tree::Tree(){
 	sizeOf=0;
 	rootOf=NULL;
 }
+	
+	
 //Pribvate methods
 //the distructor:
-Tree void::destroyTree(){
+~Tree(){
     destroyTreeHelp(root->left);
 	destroyTreeHelp(root->right);
 	delete root;
@@ -149,10 +105,7 @@ int Tree::parent(int i){
     
 }
 
-//returns the left child's data of the input
-int Tree::left(int i){
-    return ((search(i, rootOf))-> left->data);
-}
+
 //the following function is supposed to help the left and the right functions
 node *btree::search(int i, node *leaf){
 	if(leaf != NULL){
@@ -167,6 +120,11 @@ node *btree::search(int i, node *leaf){
 	}else{
 		return NULL;
 	}
+}
+	
+//returns the left child's data of the input
+int Tree::left(int i){
+    return ((search(i, rootOf))-> left->data);
 }
 //returns the right child's data of the input
 int Tree::right(int i){
