@@ -4,7 +4,7 @@
 //Implemantation of Binary Tree:
 
 	
-ariel::Tree::Tree(){
+Tree::Tree(){
 	sizeOf=0;
 	rootOf=NULL;
 }
@@ -12,7 +12,7 @@ ariel::Tree::Tree(){
 	
 //Pribvate methods
 //the distructor:
-~Tree(){
+~Tree{
     destroyTreeHelp(root->left);
 	destroyTreeHelp(root->right);
 	delete root;
@@ -20,7 +20,7 @@ ariel::Tree::Tree(){
 }
 
 //the following function is supposed to delete the leafs that come after the leaf we recieve, including the one we recieve itself
-void btree::destroyTreeHelp(Node *leaf){
+void Tree::destroyTreeHelp(Node *leaf){
 	if(leaf != NULL){
 		destroyTreeHelp(leaf->left);
 		destroyTreeHelp(leaf->right);
@@ -29,11 +29,11 @@ void btree::destroyTreeHelp(Node *leaf){
 }
 
 //the following function helps the insert function:
-void Tree::insert(int i, Node *leaf){
+void Tree::insertNode(int i, Node *leaf){
 
 	if(i < leaf->data){
 		if(leaf->left != NULL){
-			insert(i, leaf->left);
+			insertNode(i, leaf->left);
 		}else{
 			leaf->left = new Node;
 			leaf->left->data = i;
@@ -42,7 +42,7 @@ void Tree::insert(int i, Node *leaf){
 		}
 	}else if(i >= leaf->data){
 		if(leaf->right != NULL){
-			insert(i, leaf->right);
+			insertNode(i, leaf->right);
 		}else{
 			leaf->right = new Node;
 			leaf->right->data = key;
@@ -55,7 +55,7 @@ void Tree::insert(int i, Node *leaf){
 //the insert function:
 void Tree::insert(int i){
 	if(rootOf != NULL){
-		insert(i, rootOf);
+		insertNode(i, rootOf);
 	}else{
 		rootOf = new Node;
 		rootOf->data = i;
@@ -74,10 +74,10 @@ int Tree::size(){
 }
 //if the tree contains the value of i- returns true, else-false
 bool Tree::contains(int i){
-    return search(i, rootOf)
+    return search(i, rootOf);
 }
 //the following function looks for the i in the tree
-bool Tree::search(int i, node *leaf){
+bool Tree::search(int i, Node *leaf){
 	if(leaf != NULL){
 		if(i == leaf->data){
 			return true;
@@ -100,14 +100,14 @@ int Tree::root(){
 //returns the parent's data of the input
 //we need to complete it
 int Tree::parent(int i){
-    node *prev=rootOf;
-    node *current=rootOf;
+    Node *prev=rootOf;
+    Node *current=rootOf;
     
 }
 
 
 //the following function is supposed to help the left and the right functions
-node *btree::search(int i, node *leaf){
+Node Tree::search(int i, Node *leaf){
 	if(leaf != NULL){
 		if(i == leaf->data){
 			return leaf;
