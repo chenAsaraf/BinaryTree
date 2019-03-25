@@ -1,0 +1,7 @@
+// int& data(); //setter
+        // const int data() const; //getter
+        // Node*& right();  //setter ->> how to write Node*&?
+        // const Node* right const; //getter
+        // Node*& left(); //setter
+        // const Node* left() const; //getter
+        // string toString() const;
