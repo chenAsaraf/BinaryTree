@@ -12,9 +12,9 @@ class Node {
         
     public:
         Node(){
-          parent=NULL;
-          left=NULL;
-          right=NULL;
+          parent=nullptr;
+          left=nullptr;
+          right=nullptr;
           data=NULL;
         }
         Node(int data) : Node(data, nullptr, nullptr, nullptr) {}
@@ -22,13 +22,13 @@ class Node {
         data(data), right(right), left(left), parent(parent) {}
         friend Node search(int i, Node *leaf);
          
-        // int& data(); //setter
-        // const int data() const; //getter
-        // Node*& right();  //setter ->> how to write Node*&?
-        // const Node* right const; //getter
-        // Node*& left(); //setter
-        // const Node* left() const; //getter
-        // string toString() const;
+         int& data(); //setter
+         const int data() const; //getter
+         Node*& right();  //setter ->> how to write Node*&?
+         const Node* right const; //getter
+         Node*& left(); //setter
+         const Node* left() const; //getter
+         string toString() const;
 };
 
 class Tree {
@@ -41,7 +41,10 @@ class Tree {
     public:
         //constructor & deconstructor
         Tree();
-        ~Tree(){}
+        ~Tree(){    destroyTreeHelp(root->left);
+	destroyTreeHelp(root->right);
+	delete root;
+	sizeOf=0;}
     
         /*Public Methods*/
         Node insert(int i);
@@ -52,19 +55,18 @@ class Tree {
         int size();
         //returns "true" if the number i exists in the tree
         bool contains(int i);
-        +//returns the data in the root
+       //returns the data in the root
         int root();
-        +//returns the parent's data of the input
+       //returns the parent's data of the input
         int parent(int i);
         friend Node search(int i, Node *leaf);
         void destroyTreeHelp(Node *leaf);
-        +//returns the left child's data of the input
+        //returns the left child's data of the input
         int left(int i);
-        +//returns the right child's data of the input
+        //returns the right child's data of the input
         int right(int i);
-        +//print the tree
+       //print the tree
         void print();
 	
         
 };
-
