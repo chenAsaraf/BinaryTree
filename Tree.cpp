@@ -1,27 +1,39 @@
 #include "Tree.hpp"
 
-
 //Implemantation of Binary Tree:
 
-	
 Tree::Tree(){
 	sizeOf=0;
-	rootOf=NULL;
+	rootOf=nullptr;
 }
-	
+ Node::int& data(int d){
+
+ } //setter
+ /*
+ Node::const int data() const{
+	 return data;
+ } //getter
+	Node*& right(){
+		return right;
+	}  //setter ->> how to write Node*&?
+         const Node* right const; //getter
+         Node*& left(); //setter
+         const Node* left() const; //getter
+		 */
+ string toString() const;	
 	
 //Pribvate methods
 //the distructor:
-~Tree{
-    destroyTreeHelp(root->left);
-	destroyTreeHelp(root->right);
-	delete root;
-	sizeOf=0;
-}
+// Tree::~Tree{
+//     destroyTreeHelp(root->left);
+// 	destroyTreeHelp(root->right);
+// 	delete root;
+// 	sizeOf=0;
+// }
 
 //the following function is supposed to delete the leafs that come after the leaf we recieve, including the one we recieve itself
 void Tree::destroyTreeHelp(Node *leaf){
-	if(leaf != NULL){
+	if(leaf != nullptr){
 		destroyTreeHelp(leaf->left);
 		destroyTreeHelp(leaf->right);
 		delete leaf;
@@ -32,35 +44,35 @@ void Tree::destroyTreeHelp(Node *leaf){
 void Tree::insertNode(int i, Node *leaf){
 
 	if(i < leaf->data){
-		if(leaf->left != NULL){
+		if(leaf->left != nullptr){
 			insertNode(i, leaf->left);
 		}else{
 			leaf->left = new Node;
 			leaf->left->data = i;
-			leaf->left->left = NULL;
-			leaf->left->right = NULL;
+			leaf->left->left = nullptr;
+			leaf->left->right = nullptr;
 		}
 	}else if(i >= leaf->data){
-		if(leaf->right != NULL){
+		if(leaf->right != nullptr){
 			insertNode(i, leaf->right);
 		}else{
 			leaf->right = new Node;
 			leaf->right->data = key;
-			leaf->right->right = NULL;
-			leaf->right->left = NULL;
+			leaf->right->right = nullptr;
+			leaf->right->left = nullptr;
 		}
 	}
 
 }
 //the insert function:
 void Tree::insert(int i){
-	if(rootOf != NULL){
+	if(rootOf != nullptr){
 		insertNode(i, rootOf);
 	}else{
 		rootOf = new Node;
 		rootOf->data = i;
-		rootOf->left = NULL;
-		rootOf->right = NULL;
+		rootOf->left = nullptr;
+		rootOf->right = nullptr;
 	}
 	sizeOf=sizeOf+1;
 }
@@ -78,7 +90,7 @@ bool Tree::contains(int i){
 }
 //the following function looks for the i in the tree
 bool Tree::search(int i, Node *leaf){
-	if(leaf != NULL){
+	if(leaf != nullptr){
 		if(i == leaf->data){
 			return true;
 		}
@@ -108,7 +120,7 @@ int Tree::parent(int i){
 
 //the following function is supposed to help the left and the right functions
 Node Tree::search(int i, Node *leaf){
-	if(leaf != NULL){
+	if(leaf != nullptr){
 		if(i == leaf->data){
 			return leaf;
 		}
@@ -118,7 +130,7 @@ Node Tree::search(int i, Node *leaf){
 			return search(i, leaf->right);
 		}
 	}else{
-		return NULL;
+		return nullptr;
 	}
 }
 	
