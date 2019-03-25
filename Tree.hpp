@@ -11,10 +11,16 @@ class Node {
         Node* parent;        
         
     public:
-       // Node() : Node(NULL, nullptr) {} not nessecary?
+        Node(){
+          parent=NULL;
+          left=NULL;
+          right=NULL;
+          data=NULL;
+        }
         Node(int data) : Node(data, nullptr, nullptr, nullptr) {}
         Node(int data, Node* right, Node* left, Node* parent) :
         data(data), right(right), left(left), parent(parent) {}
+        friend node *btree::search(int i, node *leaf);
          
         // int& data(); //setter
         // const int data() const; //getter
@@ -30,33 +36,32 @@ class Tree {
         Node* rootOf;
         int sizeOf;
         /*Private Methods*/
-        void destroyTree();
         Node insert(int i);
         
     public:
         //constructor & deconstructor
-        Tree();
-        ~Tree();
+        Tree(){}
+        ~Tree(){}
     
         /*Public Methods*/
-
+        void Tree::insert(int i, Node *leaf);
         //remove the number i from the tree
         void remove(int i); //throw exception when not exist
         //returns the size of the tree
         int size();
         //returns "true" if the number i exists in the tree
         bool contains(int i);
-        //returns the data in the root
+        +//returns the data in the root
         int root();
-        //returns the parent's data of the input
+        +//returns the parent's data of the input
         int parent(int i);
-        //returns the left child's data of the input
+        node *btree::search(int i, node *leaf)
+        +//returns the left child's data of the input
         int left(int i);
-        //returns the right child's data of the input
+        +//returns the right child's data of the input
         int right(int i);
-        //print the tree
+        +//print the tree
         void print();
-        
         
 };
 
