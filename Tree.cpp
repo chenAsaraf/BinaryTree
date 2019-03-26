@@ -63,7 +63,7 @@ ariel::Tree::Tree(){
 
 //Destructor:
 ariel::Tree::~Tree(){
-	destroyTree(treeRoot);
+	delete treeRoot;
 }
 
 //SHOULD THROW AN EXCEPTION IF TREE IS NOT CHANGE
@@ -76,18 +76,6 @@ Node* ariel::Tree::getRoot(){
 }
 
 //Private Methods:
-
-//This following function helps the destructor of the Tree
-Node* ariel::Tree::destroyTree(Node* node){
-	    if(node == nullptr) return nullptr;
-	    if(node->getLeft() != nullptr) 
-			destroyTree(node->getLeft());
-		if(node->getRight() != nullptr) 
-			destroyTree(node->getRight());
-        delete node;
-        setSize(0);
-        return nullptr;
-    }
 
 //This following function helps the insert function
 Node* ariel::Tree::insert(Node *leaf, int i){
