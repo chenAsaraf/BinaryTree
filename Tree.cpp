@@ -79,28 +79,28 @@ Node* ariel::Tree::getRoot(){
 
 //This following function helps the insert function
 Node* ariel::Tree::insert(Node *leaf, int i){
-	if( leaf==nullptr ){
-		leaf = new Node(i);
-	}
-	else if(i < (leaf->getData())){
-		leaf->setLeft(insert(leaf->getLeft(), i));
-	}
-	else if(i > (leaf->getData())){
-		leaf->setRight(insert(leaf->getRight(), i));
-	}
+// 	if( leaf==nullptr ){
+// 		leaf = new Node(i);
+// 	}
+// 	else if(i < (leaf->getData())){
+// 		leaf->setLeft(insert(leaf->getLeft(), i));
+// 	}
+// 	else if(i > (leaf->getData())){
+// 		leaf->setRight(insert(leaf->getRight(), i));
+// 	}
 	return nullptr;
 }
 
 //this following function helps the contains function-
 //looks for the i value in the tree and return the node contains that
 Node* ariel::Tree::search(Node* leaf, int i){
-	if(leaf == nullptr)
-		return nullptr;	
-	else if(i < (leaf->getData()))
-		return search(leaf->getLeft(), i);
-	else if(i > (leaf->getData()))
-		return search(leaf->getRight(), i);
-	else
+// 	if(leaf == nullptr)
+// 		return nullptr;	
+// 	else if(i < (leaf->getData()))
+// 		return search(leaf->getLeft(), i);
+// 	else if(i > (leaf->getData()))
+// 		return search(leaf->getRight(), i);
+// 	else
 		return leaf;
 }
 
@@ -109,8 +109,8 @@ Node* ariel::Tree::search(Node* leaf, int i){
 
 //Insert function: input- number i, insert the number to it location in the Tree
 void ariel::Tree::insert(int i){
-	insert(this->getRoot(), i);
-	treeSize++;
+// 	insert(this->getRoot(), i);
+// 	treeSize++;
 }
 
 //Remove function: input- number i, remove the node holds this number in the tree
