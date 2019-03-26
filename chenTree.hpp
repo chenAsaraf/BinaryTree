@@ -1,4 +1,5 @@
 #pragma once
+
 #include <string>
 #include <iostream>
 
@@ -9,44 +10,29 @@ namespace ariel {
 class Node {
 
         int data;
-        Node* right; //pointer?
-        Node* left; //pointer?
+        Node* right; 
+        Node* left; 
         Node* parent;        
         
     public:
-        Node() : Node(NULL, nullptr, nullptr, nullptr) {} 
-        Node(int data) : Node(data, nullptr, nullptr, nullptr) {}
-        Node(int data, Node* right, Node* left, Node* parent) :
-        data(data), right(right), left(left), parent(parent) {}
-         
-        //  int& data(); //setter
-        //  const int data() const; //getter
-        //  Node*& right();  //setter ->> how to write Node*&?
-        //  const Node* right const; //getter
-        //  Node*& left(); //setter
-        //  const Node* left() const; //getter
+        Node();
+        Node(int data);
+        Node(int data, Node* right, Node* left, Node* parent);
+
+	       ~Node();
+
+         //Getters and Setters of Node 
+        void setData(int data);
+        void setRight(Node* newRight);
+        void setLeft(Node* newLeft);
+	       void setParent(Node* newParent);
+        int getData() const;
+        Node* getRight() const;
+        Node* getLeft() const;
+	       Node* getParent() const;
+
         
-        std::string toString() const;
-        
-        //Getters and Setters of Node 
-        void setData(int data){
-            this->data = data;
-        }
-        void setRight(Node* newRight){
-             this->right = newRight;
-        }
-        void setLeft(Node* newLeft){
-            this->left = newLeft;
-        }
-        int getData() const{
-                return this->data;
-        }
-        Node* getRight() const{
-                return this->right;
-        }
-        Node* getLeft() const{
-                return this->left;
-        }
+      
 };
 
 class Tree {
@@ -90,5 +76,5 @@ class Tree {
         void print();
         
         
-};
-};
+};//end class Tree
+} //end namespace ariel
