@@ -1,15 +1,49 @@
+#include <iostream>
 #include "Tree.hpp"
-using namespace ariel;
-using namespace std;
+
+
+using ariel::Tree, ariel::Node;
+
 //Implementation of Node class: 
 
+//Constructors & Destructor:
 
-//Print Node
+ariel::Node::Node() : Node(NULL, nullptr, nullptr, nullptr) {} 
+ariel::Node::Node(int data) : Node(data, nullptr, nullptr, nullptr) {}
+ariel::Node::Node(int data, Node* right, Node* left, Node* parent) :
+        data(data), right(right), left(left), parent(parent) {}
+         
+ariel::Node::~Node(){
+	if(left!=nullptr)
+		delete left;
+	if(right!=nullptr)
+		delete right;
+}
 
-string ariel::Node::toString() const{
-    // string node = "[ " + this->data + " ]"; //like that?
-    // return node;
-    return "";
+//Getters & Setters:
+void ariel::Node::setData(int data){
+            this->data = data;
+        }
+void ariel::Node::setRight(Node* newRight){
+             this->right = newRight;
+        }
+void ariel::Node::setLeft(Node* newLeft){
+            this->left = newLeft;
+        }
+void ariel::Node::setParent(Node* newParent){
+	this->parent = newParent;
+}
+int ariel::Node::getData() const{
+        return this->data;
+}
+Node* ariel::Node::getRight() const{
+        return this->right;
+}
+Node* ariel::Node::getLeft() const{
+        return this->left;
+}
+Node* ariel::Node::getParent() const{
+	return this->parent;
 }
 
 
@@ -37,6 +71,10 @@ void ariel::Tree::setSize(int i){
 	treeSize = i;
 }
 
+Node* ariel::Tree::getRoot(){
+	return treeRoot;
+}
+
 //Private Methods:
 
 //This following function helps the destructor of the Tree
@@ -60,6 +98,8 @@ Node* ariel::Tree::insert(Node *leaf, int i){
 	else if(i > (leaf->getData())){
 		leaf->setRight(insert(leaf->getRight(), i));
 	}
+	else
+		return nullptr;
 }
 
 //this following function helps the contains function-
@@ -110,8 +150,8 @@ int ariel::Tree::root(){
 
 //Parent function: input- value i, returns the data allocate above this value in the Tree
 int ariel::Tree::parent(int i){
-    // Node* current = search(this->root, i);
-    // return current->parent->data;
+     Node* current = search(this->getRoot(), i);
+     return current->getParent()->getData();
 }
 
 //Left function: input- value i, returns the left child's data of the input
@@ -130,4 +170,5 @@ int ariel::Tree::right(int i){
 void ariel::Tree::print(){
     
 }
+
 
