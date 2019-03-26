@@ -26,7 +26,6 @@ class Node {
         //  Node*& left(); //setter
         //  const Node* left() const; //getter
         
-        std::string toString() const;
         
         //Getters and Setters of Node 
         void setData(int data){
@@ -47,6 +46,10 @@ class Node {
         Node* getLeft() const{
                 return this->left;
         }
+        
+        Node* getParent() const{
+		return this->parent;
+	}
 };
 
 class Tree {
@@ -88,6 +91,7 @@ class Tree {
         int right(int i);
         //print the tree
         void print();
+	void print(Node *leaf);
         
         
 };
