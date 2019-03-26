@@ -31,7 +31,15 @@ class Node {
         Node* getLeft() const;
 	       Node* getParent() const;
 
-        
+         Node* operator = (Node* els){
+            Node* temp=new Node();
+            temp->setData(els->getData());
+            temp->setRight(els->getRight()); 
+             temp->setLeft(els->getLeft()); 
+            temp->setParent(els->getParent());
+            return temp;
+
+        }
       
 };
 
@@ -40,11 +48,11 @@ class Tree {
         Node* treeRoot;
         uint treeSize;
      /*Private Methods*/
-        Node* destroyTree(Node* node);
+        void destroyTree(Node* node);
         Node* insert(Node* leaf, int i);
         Node* search(Node* leaf, int i);
         void setSize(int i);
-        Node* getRoot();
+        Node* root1();
 
     public:
 
@@ -74,7 +82,8 @@ class Tree {
         int right(int i);
         //print the tree
         void print();
-        
+        //operator:
+       
         
 };//end class Tree
 } //end namespace ariel
