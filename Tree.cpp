@@ -8,7 +8,7 @@ using ariel::Tree, ariel::Node;
 
 //Constructors & Destructor:
 
-ariel::Node::Node() : Node(NULL, nullptr, nullptr, nullptr) {} 
+ariel::Node::Node() : Node(0, nullptr, nullptr, nullptr) {} 
 ariel::Node::Node(int data) : Node(data, nullptr, nullptr, nullptr) {}
 ariel::Node::Node(int data, Node* right, Node* left, Node* parent) :
         data(data), right(right), left(left), parent(parent) {}
@@ -98,8 +98,7 @@ Node* ariel::Tree::insert(Node *leaf, int i){
 	else if(i > (leaf->getData())){
 		leaf->setRight(insert(leaf->getRight(), i));
 	}
-	else
-		return nullptr;
+	return nullptr;
 }
 
 //this following function helps the contains function-
