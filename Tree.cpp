@@ -4,17 +4,6 @@ using namespace std;
 //Implementation of Node class: 
 
 
-//Print Node
-
-string ariel::Node::toString() const{
-   //  stringstream ss;
-     //ss << this->getData();
-     //string node = "str3 : " << ss.str() << endl;
-     //return node;
-    return "";
-}
-
-
 //Implemantation of Binary Search Tree class:
 
 //CONSTRUCTORS
@@ -100,10 +89,8 @@ uint ariel::Tree::size(){
 
 //Search function: if the tree contains the value of i- returns true.
 bool ariel::Tree::contains(int i){
-    // if (search(this->treeRoot, i) == nullprt)
-    // 	return false;
-    // else
-     	return true;
+    	if(search(this->getRoot(),i) == nullptr) { return false;}
+	else return true;
 }
 
 //Returns the data in the root
@@ -113,6 +100,18 @@ int ariel::Tree::root(){
 
 //Parent function: input- value i, returns the data allocate above this value in the Tree
 int ariel::Tree::parent(int i){
+//root = null
+//parent of root
+//if there is a parent
+	if(search(this->getRoot(), i) == nullptr)
+		return NULL;
+	else if(i=0)
+		return NULL;
+	else {
+		Node* n = search(this->getRoot(), i);
+		return n->getParent()->getData();
+	}
+
      return 0;//we need to implement this function.
 }
 
@@ -128,7 +127,16 @@ int ariel::Tree::right(int i){
         return current->getRight()->getData();
 }
 
-//Print the Tree
+//Prints the Tree
 void ariel::Tree::print(){
-    
+    print(this->getRoot());
+    cout << "\n";
+}
+
+void ariel::Tree::print(Node *leaf){
+	if(leaf != NULL){
+		print(leaf->getLeft());
+		cout << leaf->getData() << " ";
+		print(leaf->getRight());
+	}
 }
