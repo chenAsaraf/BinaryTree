@@ -1,148 +1,134 @@
 #include "Tree.hpp"
+using namespace ariel;
+using namespace std;
+//Implementation of Node class: 
 
-//Implemantation of Binary Tree:
 
-Tree::Tree(){
-	sizeOf=0;
-	rootOf=nullptr;
+//Print Node
+
+string ariel::Node::toString() const{
+   //  stringstream ss;
+     //ss << this->getData();
+     //string node = "str3 : " << ss.str() << endl;
+     //return node;
+    return "";
 }
- Node::int& data(int d){
 
- } //setter
- /*
- Node::const int data() const{
-	 return data;
- } //getter
-	Node*& right(){
-		return right;
-	}  //setter ->> how to write Node*&?
-         const Node* right const; //getter
-         Node*& left(); //setter
-         const Node* left() const; //getter
-		 */
- string toString() const;	
-	
-//Pribvate methods
-//the distructor:
-// Tree::~Tree{
-//     destroyTreeHelp(root->left);
-// 	destroyTreeHelp(root->right);
-// 	delete root;
-// 	sizeOf=0;
+
+//Implemantation of Binary Search Tree class:
+
+//CONSTRUCTORS
+//Empty Constructor:
+ariel::Tree::Tree(){
+	treeRoot = nullptr;
+	treeSize = 0;
+}
+
+//Copy Constructor:
+// ariel::Tree(Tree other){
+// 	///NEED TO IMPLEMENT!
 // }
 
-//the following function is supposed to delete the leafs that come after the leaf we recieve, including the one we recieve itself
-void Tree::destroyTreeHelp(Node *leaf){
-	if(leaf != nullptr){
-		destroyTreeHelp(leaf->left);
-		destroyTreeHelp(leaf->right);
-		delete leaf;
+//Destructor:
+ariel::Tree::~Tree(){
+	destroyTree(treeRoot);
+}
+
+//SHOULD THROW AN EXCEPTION IF TREE IS NOT CHANGE
+void ariel::Tree::setSize(int i){
+	treeSize = i;
+}
+
+//Private Methods:
+
+//This following function helps the destructor of the Tree
+Node* ariel::Tree::destroyTree(Node* node){
+	    if(node == nullptr) return nullptr;
+        destroyTree(node->getLeft());
+        destroyTree(node->getRight());
+        delete node;
+        setSize(0);
+        return nullptr;
+    }
+
+//This following function helps the insert function
+Node* ariel::Tree::insert(Node *leaf, int i){
+	if( leaf==nullptr ){
+		leaf = new Node(i);
 	}
-}
-
-//the following function helps the insert function:
-void Tree::insertNode(int i, Node *leaf){
-
-	if(i < leaf->data){
-		if(leaf->left != nullptr){
-			insertNode(i, leaf->left);
-		}else{
-			leaf->left = new Node;
-			leaf->left->data = i;
-			leaf->left->left = nullptr;
-			leaf->left->right = nullptr;
-		}
-	}else if(i >= leaf->data){
-		if(leaf->right != nullptr){
-			insertNode(i, leaf->right);
-		}else{
-			leaf->right = new Node;
-			leaf->right->data = key;
-			leaf->right->right = nullptr;
-			leaf->right->left = nullptr;
-		}
+	else if(i < (leaf->getData())){
+		leaf->setLeft(insert(leaf->getLeft(), i));
 	}
-
-}
-//the insert function:
-void Tree::insert(int i){
-	if(rootOf != nullptr){
-		insertNode(i, rootOf);
-	}else{
-		rootOf = new Node;
-		rootOf->data = i;
-		rootOf->left = nullptr;
-		rootOf->right = nullptr;
+	else if(i > (leaf->getData())){
+		leaf->setRight(insert(leaf->getRight(), i));
 	}
-	sizeOf=sizeOf+1;
-}
-//we need to complete that function:
-void Tree::remove(int i){
-    
-}
-//return the size of the tree:
-int Tree::size(){
-    return sizeOf;
-}
-//if the tree contains the value of i- returns true, else-false
-bool Tree::contains(int i){
-    return search(i, rootOf);
-}
-//the following function looks for the i in the tree
-bool Tree::search(int i, Node *leaf){
-	if(leaf != nullptr){
-		if(i == leaf->data){
-			return true;
-		}
-		if(i < leaf->data){
-			return search(i, leaf->left);
-		}else{
-			return search(i, leaf->right);
-		}
-	}else{
-		return false;
-	}
+	return leaf;
 }
 
-//returns the data in the root
-int Tree::root(){
-    return rootOf->data;
-}
-
-//returns the parent's data of the input
-//we need to complete it
-int Tree::parent(int i){
-    Node *prev=rootOf;
-    Node *current=rootOf;
-    
+//this following function helps the contains function-
+//looks for the i value in the tree and return the node contains that
+Node* ariel::Tree::search(Node* leaf, int i){
+	if(leaf == nullptr)
+		return nullptr;	
+	else if(i < (leaf->getData()))
+		return search(leaf->getLeft(), i);
+	else if(i > (leaf->getData()))
+		return search(leaf->getRight(), i);
+	else
+		return leaf;
 }
 
 
-//the following function is supposed to help the left and the right functions
-Node Tree::search(int i, Node *leaf){
-	if(leaf != nullptr){
-		if(i == leaf->data){
-			return leaf;
-		}
-		if(i < leaf->data){
-			return search(i, leaf->left);
-		}else{
-			return search(i, leaf->right);
-		}
-	}else{
-		return nullptr;
-	}
+//Public Methods:
+
+//Insert function: input- number i, insert the number to it location in the Tree
+void ariel::Tree::insert(int i){
+	insert(this->getRoot(), i);
+	treeSize++;
 }
+
+//Remove function: input- number i, remove the node holds this number in the tree
+//Throw exceptions if this number does not exist
+void ariel::Tree::remove(int i){
 	
-//returns the left child's data of the input
-int Tree::left(int i){
-    return ((search(i, rootOf))-> left->data);
 }
-//returns the right child's data of the input
-int Tree::right(int i){
-    return ((search(i, rootOf))-> right->data);
+
+//Return the size of the Tree:
+uint ariel::Tree::size(){
+    return treeSize;
 }
-//prints the tree- we need to write it
-void Tree::print(){
+
+//Search function: if the tree contains the value of i- returns true.
+bool ariel::Tree::contains(int i){
+    // if (search(this->treeRoot, i) == nullprt)
+    // 	return false;
+    // else
+     	return true;
+}
+
+//Returns the data in the root
+int ariel::Tree::root(){
+    return treeRoot->getData();
+}
+
+//Parent function: input- value i, returns the data allocate above this value in the Tree
+int ariel::Tree::parent(int i){
+     return 0;//we need to implement this function.
+}
+
+//Left function: input- value i, returns the left child's data of the input
+int ariel::Tree::left(int i){
+    Node* current = search(this->getRoot(), i);
+    return current->getLeft()->getData();
+}
+
+//Right function: input- value i, returns the right child's data of the input
+int ariel::Tree::right(int i){
+	Node* current = search(this->getRoot(), i);
+        return current->getRight()->getData();
+}
+
+//Print the Tree
+void ariel::Tree::print(){
     
 }
