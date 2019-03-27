@@ -68,6 +68,7 @@ class Tree {
         void insert(int i); //throw exception when already axist
         //remove the number i from the tree
         void remove(int i); //throw exception when not exist
+	void remove(Node* key_pointer);
         //returns the size of the tree
         uint size();
         //returns "true" if the number i exists in the tree
@@ -83,6 +84,7 @@ class Tree {
         //print the tree
         void print();
         //operator:
+	void print(Node *leaf);
        
         
 };//end class Tree
