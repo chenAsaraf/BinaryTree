@@ -168,9 +168,66 @@ void ariel::Tree::insert(int i){
 //Remove function: input- number i, remove the node holds this number in the tree
 //Throw exceptions if this number does not exist
 void ariel::Tree::remove(int i){
-	
+	Node* node = search(this->treeRoot, i);
+	if(node != NULL){
+		remove(node);
+		setSize(size()+1);
+	} else {
+		throw "err";
+	}
 }
 
+void ariel::Tree::remove(Node* node){
+//easiest case is that the node is a leaf with no children.
+	if(node->getRight() == NULL && node->getLeft() == NULL){
+		Node* parent = node->getParent();
+		if(parent == NULL) { treeRoot = NULL; }
+		else if(node->getData() >= parent->getData()) { parent->setRight(NULL); }
+		else parent->setLeft(NULL);
+		delete node;
+	}
+	else if(node->getLeft() == NULL) {
+		Node* parent = node->getParent();
+		if(parent == NULL) {
+			treeRoot = node->getRight();
+			root1()->setParent(NULL);
+		}
+		else if(node->getData() >= parent->getData()) {
+			parent->setRight(node->getRight());
+			node->getRight()->setParent(parent);
+		}
+		else {
+			parent->setLeft(node->getRight());
+			node->getRight()->setParent(parent);
+		}
+		delete node;
+	}	
+	else if(node->getRight() == NULL) {
+		Node* parent = node->getParent();
+		if(parent == NULL) {
+			treeRoot = node->getLeft();
+			root1()->setParent(NULL);
+		}
+		else if(node->getData() >= parent->getData()) {
+			parent->setRight(node->getLeft());
+			node->getLeft()->setParent(parent);
+		}
+		else {
+			parent->setLeft(node->getLeft());
+			node->getLeft()->setParent(parent);
+		}
+		delete node;
+	}	
+	else {
+		Node* att = node->getRight();
+		while(att != NULL && att->getLeft() != NULL) {
+			att = att->getLeft();
+		}
+		int num = att->getData();
+		remove(num);
+		node->setData(num);
+	}
+}
 //Return the size of the Tree:
 uint ariel::Tree::size(){
     return treeSize;
@@ -178,9 +235,9 @@ uint ariel::Tree::size(){
 
 //Search function: if the tree contains the value of i- returns true.
 bool ariel::Tree::contains(int i){
-    // if (search(this->treeRoot, i) == nullprt)
-    // 	return false;
-    // else
+     if (search(this->treeRoot, i) == nullptr)
+     	return false;
+     else
      	return true;
 }
 
@@ -209,8 +266,16 @@ int ariel::Tree::right(int i){
 
 //Print the Tree
 void ariel::Tree::print(){
-    
+	print(root1());
+	cout << "\n";    
 }
 
+void ariel::Tree::print(Node *leaf){
+	if(leaf != NULL){
+		print(leaf->getLeft());
+		cout << leaf->getData() << " ";
+		print(leaf->getRight());
+	}
+}
 
 
