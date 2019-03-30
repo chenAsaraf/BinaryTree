@@ -113,19 +113,22 @@ Node* ariel::Tree::insert(Node* node, int i){
 			if(node->getLeft() == nullptr){
 				Node* newLeft = new Node(i, nullptr, nullptr, node);
 				node->setLeft(newLeft);
+				newLeft->setParent(node);
+				cout << newLeft->getParent()->getData() << endl;
 				treeSize++;
 				return newLeft;
 			}
-			else insert(node->getLeft(), i);
+			else return insert(node->getLeft(), i);
 		}
 		else{
 			if(node->getRight() == nullptr){
 				Node* newRight = new Node(i, nullptr, nullptr, node);
 				node->setRight(newRight);
+				newRight->setParent(node);
 				treeSize++;
 				return newRight;
 			}
-			else insert(node->getRight(), i);
+			else return insert(node->getRight(), i);
 		}
 	} 
 	else return nullptr;
@@ -135,11 +138,13 @@ void ariel::Tree::insert(int i){
 		if(treeRoot == nullptr){
 			treeRoot = new Node(i);
 			treeSize++;
+			treeRoot->setParent(nullptr);
 		}
 		else if (contains(i)){
 			throw std::invalid_argument("This number aleady exist");
 		}
 		else{
+			cout << "hi" << endl;
 			insert(treeRoot, i);
 		}
 }
@@ -254,9 +259,7 @@ int ariel::Tree::root(){
 
 //Parent function: input- value i, returns the data allocate above this value in the Tree
 int ariel::Tree::parent(int i){
-// Node* current= search(this->root, i);
-    // return current->parent->data;
-return 0;
+	return search(treeRoot, i)->getParent()->getData();
 }
 
 //Left function: input- value i, returns the left child's data of the input
@@ -288,6 +291,3 @@ void ariel::Tree::print(){
 		cout << "" <<endl;
 	}
 }
-
-
-
