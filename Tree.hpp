@@ -1,6 +1,5 @@
 
 #pragma once
-
 #include <string>
 #include <iostream>
 
@@ -16,44 +15,33 @@ class Node {
         Node* parent;        
         
     public:
-        Node();
+        Node(); 
         Node(int data);
         Node(int data, Node* right, Node* left, Node* parent);
-
-	       ~Node();
-
-         //Getters and Setters of Node 
+        
+        //Getters and Setters of Node 
         void setData(int data);
         void setRight(Node* newRight);
         void setLeft(Node* newLeft);
-	       void setParent(Node* newParent);
+        void setParent(Node* newParent);
         int getData() const;
         Node* getRight() const;
         Node* getLeft() const;
-	       Node* getParent() const;
+        Node* getParent() const;
+	
 
-         Node* operator = (Node* els){
-            Node* temp=new Node();
-            temp->setData(els->getData());
-            temp->setRight(els->getRight()); 
-             temp->setLeft(els->getLeft()); 
-            temp->setParent(els->getParent());
-            return temp;
-
-        }
-      
-};
+}; //end Node
 
 class Tree {
 
         Node* treeRoot;
         uint treeSize;
      /*Private Methods*/
-        void destroyTree(Node* node);
-        Node* insert(Node* leaf, int i);
+        void DestroyTree(Node* node);
+        Node* insert(Node* node, int i);
         Node* search(Node* leaf, int i);
-        void setSize(int i);
-        Node* root1();
+        Node* minValue(Node* subtree);
+	void print(Node* node);
 
     public:
 
@@ -65,12 +53,13 @@ class Tree {
     
         /*Public Methods*/
         
+	
         //insert the number i to the correct node in the binary tree
         void insert(int i); //throw exception when already axist
         //remove the number i from the tree
         void remove(int i); //throw exception when not exist
         //returns the size of the tree
-        uint size();
+        int size();
         //returns "true" if the number i exists in the tree
         bool contains(int i);
         //returns the data in the root
@@ -83,8 +72,7 @@ class Tree {
         int right(int i);
         //print the tree
         void print();
-        //operator:
-       
-        
-};//end class Tree
-} //end namespace ariel
+
+    
+};//end Tree
+} //end namespace
