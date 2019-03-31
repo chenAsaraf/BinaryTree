@@ -1,9 +1,0 @@
-//This following function helps the destructor of the Tree
-//Node* ariel::Tree::destroyTree(Node* node){
-//	    if(node == nullptr) return nullptr;
-//        destroyTree(node->getLeft());
-//        destroyTree(node->getRight());
-//      delete node;
-//        setSize(0);
-//     return nullptr;
-//   }
